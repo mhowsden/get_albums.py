@@ -3,8 +3,16 @@
 import requests, re, os, shutil, json
 
 # i have my access token in a file named access_token
-# but you could also just assign it to this variable here
-my_token = open("access_token", "r").read().strip()
+# but you could also just assign it to this variable
+try:
+    my_token = open("access_token", "r").read().strip()
+except IOError:
+    print "\naccess_token file does not exist.  Get it \n" \
+    "from https://developers.facebook.com/tools/explorer, \n" \
+    "make sure you grant access to user_photos and save the \n" \
+    "contents to a file named access_token in this directory.\n"
+    exit()
+
 data_path = os.path.join(os.getcwd(), 'data')
 albums_path = os.path.join(os.getcwd(), 'albums')
 
