@@ -37,11 +37,12 @@ if not os.path.exists(json_filename):
 
     # saving JSON response for the album list
     json_file = open(json_filename, "w")
-    json_file.write(r.content)
+    json_file.write(json.dumps(r.json, sort_keys=True,
+                               indent=4, separators=(',', ': ')))
     json_file.close()
 
     # a dict representation of albums data
-    albums = r.json["data"]
+    albums = r.json['data']
 else:
     json_file = open(json_filename, "r")
     albums = json.load(json_file)["data"]
@@ -67,7 +68,8 @@ for album in albums:
                           % (album['id'], my_token))
         # saving JSON response for the image list
         json_file = open(json_filename, "w")
-        json_file.write(r2.content)
+        json_file.write(json.dumps(r2.json, sort_keys=True,
+                                   indent=4, separators=(',', ': ')))
         json_file.close()
 
         images = r2.json["data"]
