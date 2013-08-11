@@ -3,7 +3,7 @@
 *A utility to quickly pull down a user's facebook albums.*
 
 This utility creates two directories:
- * data - folder where fb JSON data is cached/stored
+ * data - folder where Graph API JSON data is cached/stored
  * albums - folder where album content is stored
 
 **PREREQUISITES**
