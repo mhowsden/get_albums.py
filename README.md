@@ -24,6 +24,5 @@ and placed in the same directory as this script in a file named
 
     git clone https://github.com/mhowsden/get_albums.py.git fb_albums
     cd fb_albums
+    echo "LONGACCESSTOKENFROMAPIEXPLORERGOESHERE" > access_token
     ./get_albums.py
-    
-    
