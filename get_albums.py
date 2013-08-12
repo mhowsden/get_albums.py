@@ -53,7 +53,7 @@ else:
 pattern = re.compile('[\W]+')
 
 for album in albums:
-    print album['id'], album['name'].replace(' ','_')
+    print 'Processing album "%s" with id %s.' % (album['name'], album['id'])
 
     album_dir_name = pattern.sub('', album['name'].replace(' ','_'))
     album_path = os.path.join(albums_path, album_dir_name)
@@ -80,14 +80,17 @@ for album in albums:
 
     for counter, image in enumerate(images):
         counter += 1
-        print image["source"], counter
-        if image.has_key('name'):
-            print image["name"]
 
         image_filename = os.path.join(album_path, "%s.jpg" % counter)
 
         if not os.path.exists(image_filename):
+            print "Downloading image %s of album %s." % (counter, album['name'])
             r3 = requests.get(image["source"])
             image_file = open(image_filename, "wb")
             shutil.copyfileobj(r3.raw, image_file)
             image_file.close()
+        else:
+            print "Already retreived image %s of album %s." % (counter, album['name'])
+
+        if image.has_key('name'):
+            print image["name"]
