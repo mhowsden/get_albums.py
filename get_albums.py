@@ -78,14 +78,13 @@ for album in albums:
         images = json.load(json_file)["data"]
         json_file.close()
 
-    icount = 0
-    for image in images:
-        icount += 1
-        print image["source"], icount
+    for counter, image in enumerate(images):
+        counter += 1
+        print image["source"], counter
         if image.has_key('name'):
             print image["name"]
 
-        image_filename = os.path.join(album_path, "%s.jpg" % icount)
+        image_filename = os.path.join(album_path, "%s.jpg" % counter)
 
         if not os.path.exists(image_filename):
             r3 = requests.get(image["source"])
