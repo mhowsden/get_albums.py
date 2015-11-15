@@ -12,12 +12,12 @@ This requires the python requests library.
 
     pip install requests
 
-The other Python modules in use are built-ins.  This has only been 
-tested under Ubuntu 12.10 with Python 2.7.3.  
+The other Python modules in use are built-ins.  This has only been
+tested under Ubuntu 14.10 with Python 2.7.6 and requests 2.5.1.
 
-It also requires an access token which can be gotten from the 
-[Graph API Explorer](https://developers.facebook.com/tools/explorer) 
-and placed in the same directory as this script in a file named 
+It also requires an access token which can be gotten from the
+[Graph API Explorer](https://developers.facebook.com/tools/explorer)
+and placed in the same directory as this script in a file named
 "access_token".
 
 **USAGE**
