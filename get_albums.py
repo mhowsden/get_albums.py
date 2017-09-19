@@ -52,6 +52,20 @@ else:
 # for stripping non-alphanumeric
 pattern = re.compile('[\W]+')
 
+def best_resolution_source(image):
+    """
+    Find the highest resolution image in the JSON data and return the source URL
+    """
+    best = None
+    for resolution in image['images']:
+        if best is None or resolution['width'] > best['width']:
+            best = resolution
+    if best is not None:
+        return best['source']
+    # return the default source URL, just in case
+    return image['source']
+
+
 for album in albums:
     print 'Processing album "%s" with id %s.' % (album['name'], album['id'])
 
@@ -85,7 +99,7 @@ for album in albums:
 
         if not os.path.exists(image_filename):
             print "Downloading image %s of album %s." % (counter, album['name'])
-            r3 = requests.get(image["source"], stream=True)
+            r3 = requests.get(best_resolution_source(image), stream=True)
             image_file = open(image_filename, "wb")
             shutil.copyfileobj(r3.raw, image_file)
             image_file.close()
